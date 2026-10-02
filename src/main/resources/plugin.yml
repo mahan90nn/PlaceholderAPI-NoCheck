@@ -3,10 +3,10 @@ main: "me.clip.placeholderapi.PlaceholderAPIPlugin"
 folia-supported: true
 
 version: ${version}
-author: HelpChat
+author: HelpChat, Mr_Stable
 
 api-version: "1.13"
-description: "An awesome placeholder provider!"
+description: "forked to make it work with iranian meli internet by stable. An awesome placeholder provider!"
 
 commands:
   placeholderapi:
