@@ -21,12 +21,9 @@
 package me.clip.placeholderapi;
 
 import java.text.SimpleDateFormat;
-import java.util.HashMap;
-import java.util.Map;
 
 import me.clip.placeholderapi.commands.PlaceholderCommandRouter;
 import me.clip.placeholderapi.configuration.PlaceholderAPIConfig;
-import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import me.clip.placeholderapi.expansion.Version;
 import me.clip.placeholderapi.expansion.manager.CloudExpansionManager;
 import me.clip.placeholderapi.expansion.manager.LocalExpansionManager;
@@ -35,9 +32,6 @@ import me.clip.placeholderapi.scheduler.UniversalScheduler;
 import me.clip.placeholderapi.scheduler.scheduling.schedulers.TaskScheduler;
 import me.clip.placeholderapi.util.Msg;
 import net.kyori.adventure.platform.bukkit.BukkitAudiences;
-import org.bstats.bukkit.Metrics;
-import org.bstats.charts.AdvancedPie;
-import org.bstats.charts.SimplePie;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.PluginCommand;
@@ -149,7 +143,6 @@ public final class PlaceholderAPIPlugin extends JavaPlugin {
     @Override
     public void onEnable() {
         setupCommand();
-        setupMetrics();
         setupExpansions();
 
         adventure = BukkitAudiences.create(this);
@@ -231,25 +224,6 @@ public final class PlaceholderAPIPlugin extends JavaPlugin {
         final PlaceholderCommandRouter router = new PlaceholderCommandRouter(this);
         pluginCommand.setExecutor(router);
         pluginCommand.setTabCompleter(router);
-    }
-
-    private void setupMetrics() {
-        final Metrics metrics = new Metrics(this, 438);
-        metrics.addCustomChart(new SimplePie("using_expansion_cloud",
-                () -> getPlaceholderAPIConfig().isCloudEnabled() ? "yes" : "no"));
-
-        metrics.addCustomChart(new SimplePie("using_spigot", () -> getServerVersion().isSpigot() ? "yes" : "no"));
-
-        metrics.addCustomChart(new AdvancedPie("expansions_used", () -> {
-            final Map<String, Integer> values = new HashMap<>();
-
-            for (final PlaceholderExpansion expansion : getLocalExpansionManager().getExpansions()) {
-                values.put(expansion.getRequiredPlugin() == null ? expansion.getIdentifier()
-                        : expansion.getRequiredPlugin(), 1);
-            }
-
-            return values;
-        }));
     }
 
     private void setupExpansions() {

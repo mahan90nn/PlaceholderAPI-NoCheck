@@ -11,7 +11,6 @@
 [modrinth]: https://modrinth.com/plugin/placeholderapi
 [Expansions cloud]: https://ecloud.placeholderapi.com
 [placeholder list]: https://helpch.at/placeholders
-[statistics]: https://bstats.org/plugin/bukkit/PlaceholderAPI
 
 [ci]: http://ci.extendedclip.com/job/PlaceholderAPI/
 [ciImg]: http://ci.extendedclip.com/buildStatus/icon?job=PlaceholderAPI
@@ -51,4 +50,3 @@ If you would like to create your own Placeholder Expansion for PlaceholderAPI, t
 - [Spigot Page][spigot]
 - [Hangar Page][hangar]
 - [Modrinth Page][modrinth]
-- [Plugin Statistics][statistics]

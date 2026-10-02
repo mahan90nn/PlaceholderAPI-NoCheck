@@ -33,7 +33,6 @@ repositories {
 }
 
 dependencies {
-    implementation("org.bstats:bstats-bukkit:3.1.0")
     implementation("net.kyori:adventure-platform-bukkit:4.4.1")
 
     add(paper.compileOnlyConfigurationName, "net.kyori:adventure-platform-bukkit:4.4.1")
@@ -126,7 +125,6 @@ tasks {
 
         archiveClassifier.set("")
 
-        relocate("org.bstats", "me.clip.placeholderapi.metrics")
         relocate("net.kyori", "me.clip.placeholderapi.libs.kyori")
 
         exclude("META-INF/versions/**")
