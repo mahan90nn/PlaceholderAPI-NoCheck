@@ -30,7 +30,6 @@ permissions:
       placeholderapi.version: true
       placeholderapi.register: true
       placeholderapi.unregister: true
-      placeholderapi.updatenotify: true
   placeholderapi.ecloud.*:
     description: "Ability to use all PAPI ecloud commands"
     children:
@@ -70,9 +69,6 @@ permissions:
   placeholderapi.unregister:
     default: "op"
     description: "Allows you to unregister expansions"
-  placeholderapi.updatenotify:
-    default: "op"
-    description: "Notifies you when there is a PAPI update"
   placeholderapi.ecloud.info:
     default: "op"
     description: "Allows you to view cloud expansion information"

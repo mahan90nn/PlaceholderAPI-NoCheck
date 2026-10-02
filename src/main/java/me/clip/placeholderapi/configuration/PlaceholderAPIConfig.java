@@ -35,11 +35,6 @@ public final class PlaceholderAPIConfig {
     }
 
 
-    public boolean checkUpdates() {
-        return plugin.getConfig().getBoolean("check_updates");
-    }
-
-
     public boolean isCloudEnabled() {
         return plugin.getConfig().getBoolean("cloud_enabled");
     }
@@ -93,9 +88,5 @@ public final class PlaceholderAPIConfig {
 
     public boolean useAdventureProvidedReplacer() {
         return plugin.getConfig().getBoolean("use_adventure_provided_replacer", false);
-    }
-
-    public boolean detectMaliciousExpansions() {
-        return plugin.getConfig().getBoolean("detect_malicious_expansions", true);
     }
 }

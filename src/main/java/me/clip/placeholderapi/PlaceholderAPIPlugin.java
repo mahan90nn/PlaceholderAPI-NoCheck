@@ -33,8 +33,6 @@ import me.clip.placeholderapi.expansion.manager.LocalExpansionManager;
 import me.clip.placeholderapi.listeners.ServerLoadEventListener;
 import me.clip.placeholderapi.scheduler.UniversalScheduler;
 import me.clip.placeholderapi.scheduler.scheduling.schedulers.TaskScheduler;
-import me.clip.placeholderapi.updatechecker.UpdateChecker;
-import me.clip.placeholderapi.util.ExpansionSafetyCheck;
 import me.clip.placeholderapi.util.Msg;
 import net.kyori.adventure.platform.bukkit.BukkitAudiences;
 import org.bstats.bukkit.Metrics;
@@ -85,7 +83,6 @@ public final class PlaceholderAPIPlugin extends JavaPlugin {
     private final TaskScheduler scheduler = UniversalScheduler.getScheduler(this);
 
     private BukkitAudiences adventure;
-    private boolean safetyCheck = false;
 
 
     /**
@@ -146,21 +143,11 @@ public final class PlaceholderAPIPlugin extends JavaPlugin {
     public void onLoad() {
         saveDefaultConfig();
 
-        safetyCheck = new ExpansionSafetyCheck(this).runChecks();
-
-        if (safetyCheck) {
-            return;
-        }
-
         instance = this;
     }
 
     @Override
     public void onEnable() {
-        if (safetyCheck) {
-            return;
-        }
-
         setupCommand();
         setupMetrics();
         setupExpansions();
@@ -170,18 +157,10 @@ public final class PlaceholderAPIPlugin extends JavaPlugin {
         if (config.isCloudEnabled()) {
             getCloudExpansionManager().load();
         }
-
-        if (config.checkUpdates()) {
-            new UpdateChecker(this).fetch();
-        }
     }
 
     @Override
     public void onDisable() {
-        if (safetyCheck) {
-            return;
-        }
-
         getCloudExpansionManager().kill();
         getLocalExpansionManager().kill();
 
